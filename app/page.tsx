@@ -93,7 +93,7 @@ export default function LandingPage() {
         <img
           src="BG.jpg"
           alt="hero"
-          className="absolute inset-0 w-full h-full object-cover blur-[4px]"
+          className="absolute inset-0 w-full h-full object-cover blur-xs"
         />
 
         <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center px-4">

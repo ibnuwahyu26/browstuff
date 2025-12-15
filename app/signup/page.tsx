@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function SignUpPage() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-800 via-slate-900 to-black px-4 py-8">
+    <main className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-800 via-slate-900 to-black px-4 py-8">
       
       {/* LANDSCAPE CONTAINER */}
       <div className="w-full max-w-3xl h-auto md:h-[520px] bg-slate-700/50 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
