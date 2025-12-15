@@ -7,10 +7,10 @@ export default function LoginPage() {
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-800 via-slate-900 to-black px-4 py-8">
       
       {/* LANDSCAPE CONTAINER (FIX SIZE) */}
-      <div className="w-full max-w-3xl h-[520px] bg-slate-700/50 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden flex">
+      <div className="w-full max-w-3xl h-auto md:h-[520px] bg-slate-700/50 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
         
         {/* ================= LEFT SIDE - LOGIN FORM ================= */}
-        <div className="w-1/2 bg-[#222831] p-6 flex items-center justify-center">
+        <div className="w-full md:w-1/2 bg-[#222831] p-6 flex items-center justify-center">
           <div className="w-full max-w-xs bg-[#393E46] rounded-xl p-6 shadow-xl">
             
             {/* TITLE */}
@@ -86,32 +86,32 @@ export default function LoginPage() {
         </div>
 
         {/* ================= RIGHT SIDE - BRANDING ================= */}
-        <div className="w-1/2 bg-[#00ADB5] flex flex-col items-center justify-center text-center">
+        <div className="w-full md:w-1/2 bg-[#00ADB5] flex flex-col items-center justify-center text-center p-6">
 
           {/* LOGO */}
           <div className="mb-3">
             <Image
               src="/OBJECTS.png"
               alt="Logo"
-              width={90}
-              height={90}
+              width={70}
+              height={70}
               priority
-              className="rounded-xl"
+              className="rounded-xl md:w-[90px] md:h-[90px]"
             />
           </div>
 
           {/* TITLE */}
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 md:mb-6">
             BrowStuff
           </h2>
 
           {/* SUBTITLE */}
-          <p className="text-lg text-black font-bold mb-1">
+          <p className="text-base md:text-lg text-black font-bold mb-1">
             Login your Account
           </p>
 
           {/* DESCRIPTION */}
-          <p className="text-sm text-white font-medium">
+          <p className="text-xs md:text-sm text-white font-medium">
             Ayo Memulai menyewa
             <br />
             barang di kami

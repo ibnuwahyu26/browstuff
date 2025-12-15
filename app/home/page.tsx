@@ -16,34 +16,34 @@ export default function HomePage() {
     <main className="min-h-screen bg-[#E5E5E5] font-sans">
 
       {/* HEADER */}
-      <header className="bg-[#00ADB5] px-8 py-4 flex items-center justify-between">
-        <h1 className="text-white text-3xl font-extrabold">BrowStuff</h1>
+      <header className="bg-[#00ADB5] px-4 md:px-8 py-4 flex items-center justify-between">
+        <h1 className="text-white text-2xl md:text-3xl font-extrabold">BrowStuff</h1>
 
-        <div className="bg-[#3A4750] text-white px-8 py-3 rounded-xl flex gap-10 text-xs">
-          <div className="flex flex-col items-center gap-1 cursor-pointer hover:text-[#00ADB5] transition">
-            <i className="fa-solid fa-bell text-lg"></i>
-            <span>Notifikasi</span>
+        <div className="bg-[#3A4750] text-white px-2 md:px-4 lg:px-8 py-3 rounded-xl flex flex-wrap gap-2 md:gap-4 lg:gap-10 text-xs justify-center md:justify-end">
+          <div className="flex flex-col items-center gap-1 cursor-pointer hover:text-[#00ADB5] transition min-w-0">
+            <i className="fa-solid fa-bell text-sm md:text-lg"></i>
+            <span className="text-xs">Notifikasi</span>
           </div>
 
-          <div className="flex flex-col items-center gap-1 cursor-pointer hover:text-[#00ADB5] transition">
-            <i className="fa-solid fa-store text-lg"></i>
-            <span>Buka Toko</span>
+          <div className="flex flex-col items-center gap-1 cursor-pointer hover:text-[#00ADB5] transition min-w-0">
+            <i className="fa-solid fa-store text-sm md:text-lg"></i>
+            <span className="text-xs">Buka Toko</span>
           </div>
 
-          <div className="flex flex-col items-center gap-1 cursor-pointer hover:text-[#00ADB5] transition">
-            <i className="fa-solid fa-bag-shopping text-lg"></i>
-            <span>Orders</span>
+          <div className="flex flex-col items-center gap-1 cursor-pointer hover:text-[#00ADB5] transition min-w-0">
+            <i className="fa-solid fa-bag-shopping text-sm md:text-lg"></i>
+            <span className="text-xs">Orders</span>
           </div>
 
-          <div className="flex flex-col items-center gap-1 cursor-pointer hover:text-[#00ADB5] transition">
-            <i className="fa-solid fa-user text-lg"></i>
-            <span>Akun</span>
+          <div className="flex flex-col items-center gap-1 cursor-pointer hover:text-[#00ADB5] transition min-w-0">
+            <i className="fa-solid fa-user text-sm md:text-lg"></i>
+            <span className="text-xs">Akun</span>
           </div>
         </div>
       </header>
 
       {/* ACTION BAR (CATEGORY + SEARCH) */}
-      <section className="max-w-6xl mx-auto mt-6 px-4 flex items-center gap-6">
+      <section className="max-w-6xl mx-auto mt-6 px-4 flex flex-col md:flex-row items-center gap-4 md:gap-6">
 
         {/* CATEGORY DROPDOWN */}
         <div className="relative group z-50">
@@ -86,29 +86,29 @@ export default function HomePage() {
       </section>
 
       {/* GRID PRODUK */}
-      <section className="max-w-6xl mx-auto pt-14 pb-16 px-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+      <section className="max-w-6xl mx-auto pt-14 pb-16 px-2 md:px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
         {items.map((item) => (
           <div key={item.id} className="flex flex-col items-center">
 
             {/* PUTIH (ATAS) */}
-            <div className="bg-white w-full rounded-3xl p-9 shadow-md flex justify-center z-10">
-              <img src={item.img} alt={item.name} className="h-28 object-contain" />
+            <div className="bg-white w-full rounded-3xl p-4 md:p-9 shadow-md flex justify-center z-10">
+              <img src={item.img} alt={item.name} className="h-20 md:h-28 object-contain" />
             </div>
 
             {/* ABU (BAWAH) */}
-            <div className="bg-[#3A4750] w-full -mt-8 rounded-3xl p-4 pt-10 shadow-lg text-white flex flex-col">
-              <h3 className="text-sm font-semibold text-center mb-3">
+            <div className="bg-[#3A4750] w-full -mt-8 rounded-3xl p-3 md:p-4 pt-8 md:pt-10 shadow-lg text-white flex flex-col">
+              <h3 className="text-xs md:text-sm font-semibold text-center mb-2 md:mb-3">
                 {item.name}
               </h3>
 
-              <div className="flex justify-between items-center mb-4">
-                <p className="text-sm">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 md:mb-4 gap-1">
+                <p className="text-xs md:text-sm">
                   Rp. {item.price}
                   <span className="text-xs">/Hari</span>
                 </p>
 
                 <span
-                  className={`text-xs px-3 py-0.5 rounded-full ${
+                  className={`text-xs px-2 md:px-3 py-0.5 rounded-full self-end sm:self-auto ${
                     item.status === "tersedia" ? "bg-green-500" : "bg-red-500"
                   }`}
                 >
@@ -118,7 +118,7 @@ export default function HomePage() {
 
               <button
                 disabled={item.status !== "tersedia"}
-                className={`mt-auto w-full py-1.5 rounded-full border-2 text-sm transition
+                className={`mt-auto w-full py-1.5 rounded-full border-2 text-xs md:text-sm transition
                   ${
                     item.status === "tersedia"
                       ? "border-white hover:bg-white hover:text-[#3A4750]"

@@ -5,23 +5,23 @@ import "@/app/globals.css";
 export default function LandingPage() {
   // ================= DATA BARANG =================
   const items = [
-    { id: 1, name: "Kamera SONY", price: "250.000" },
-    { id: 2, name: "Kamera SONY", price: "250.000" },
-    { id: 3, name: "Kamera SONY", price: "250.000" },
-    { id: 4, name: "Kamera SONY", price: "250.000" },
-    { id: 5, name: "Kamera SONY", price: "250.000" },
-    { id: 6, name: "Kamera SONY", price: "250.000" },
+    { id: 1, name: "Camera SONY", price: "250.000", img: "/items/camera.png" },
+    { id: 2, name: "Handy Talkie", price: "50.000", img: "/items/ht.png" },
+    { id: 3, name: "Audio Mixer", price: "250.000", img: "/items/mixer.png" },
+    { id: 4, name: "Lampu Sorot", price: "250.000", img: "/items/lampu.png" },
+    { id: 5, name: "Layar Proyektor", price: "250.000", img: "/items/proyektor.png" },
+    { id: 6, name: "Lampu Taktis", price: "250.000", img: "/items/moving.png" },
   ];
 
   return (
     <main className="w-full font-sans bg-gray-100">
 
       {/* ================= NAVBAR ================= */}
-      <nav className="w-full bg-[#00ADB5] px-6 py-4 shadow z-50 relative">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <nav className="w-full bg-[#00ADB5] px-4 md:px-6 py-4 shadow z-50 relative">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
 
           {/* LEFT SIDE */}
-          <div className="flex items-center gap-6 relative">
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 relative">
 
             {/* Logo */}
             <div className="flex flex-col items-center">
@@ -54,7 +54,7 @@ export default function LandingPage() {
 
             {/* SEARCH BAR */}
             <div className="flex items-center">
-              <div className="flex items-center bg-white px-4 py-2 shadow w-[450px] rounded-lg">
+              <div className="flex items-center bg-white px-4 py-2 shadow w-full md:w-[450px] rounded-lg">
                 <input
                   type="text"
                   placeholder="Mau sewa apa hari ini?"
@@ -66,7 +66,7 @@ export default function LandingPage() {
           </div>
 
           {/* RIGHT SIDE */}
-          <div className="flex flex-col items-center space-y-2">
+          <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
 
             {/* REGISTER + LOGIN */}
             <div className="flex space-x-6 text-sm font-semibold">
@@ -97,24 +97,24 @@ export default function LandingPage() {
         />
 
         <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center px-4">
-          <h1 className="text-white text-4xl md:text-5xl font-extrabold leading-tight drop-shadow-xl text-stroke">
+          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight drop-shadow-xl text-stroke">
             SEWA ALAT EVENT <br /> PALING LENGKAP DI <br /> PARAMADINA
           </h1>
 
-          <p className="text-white mt-4 tracking-[5px] text-sm md:text-base">
+          <p className="text-white mt-4 tracking-[2px] md:tracking-[5px] text-sm md:text-base">
             "Wujudkan Event Impianmu Bersama Kami!"
           </p>
 
           <Link 
            href="/home"
-           className="mt-6 inline-block bg-[#222831] text-white px-6 py-3 rounded-xl shadow-lg hover:bg-[#1b1f24] transition">
+           className="mt-6 inline-block bg-[#222831] text-white px-4 md:px-6 py-3 rounded-xl shadow-lg hover:bg-[#1b1f24] transition text-sm md:text-base">
             KLIK DI SINI UNTUK PILIH PRODUK TERBAIK KAMI
            </Link>
         </div>
       </section>
 
       {/* ================= KENAPA BROWSTUFF ================= */}
-      <section className="max-w-6xl mx-auto py-16 px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <section className="max-w-6xl mx-auto py-12 md:py-16 px-4 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
 
         {/* TEXT */}
         <div>
@@ -134,8 +134,8 @@ export default function LandingPage() {
 
         {/* IMAGE */}
         <div className="flex justify-center">
-          <div className="bg-white shadow-2xl rounded-2xl p-6 border-[5px] border-[#00ADB5]">
-            <img src="OBJECTS.png" alt="OBJECTS" className="w-64" />
+          <div className="bg-white shadow-2xl rounded-2xl p-4 md:p-6 border-[3px] md:border-[5px] border-[#00ADB5]">
+            <img src="OBJECTS.png" alt="OBJECTS" className="w-48 md:w-64" />
           </div>
         </div>
 
@@ -147,7 +147,7 @@ export default function LandingPage() {
     Barang Terpopuler
   </h2>
 
-  <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4">
+  <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 px-2 md:px-4">
     {items.map((item) => (
       <div
         key={item.id}
@@ -156,7 +156,7 @@ export default function LandingPage() {
         {/* Image container */}
         <div className="w-full bg-white rounded-3xl p-6 mb-4">
           <img
-            src={`/items/item${item.id}.jpg`}
+            src={item.img}
             alt={item.name}
             className="w-full h-48 object-contain"
           />
