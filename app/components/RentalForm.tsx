@@ -21,12 +21,13 @@ interface FormData {
 }
 
 interface RentalFormProps {
+  selectedItem?: Item
   selectedItems?: Item[]
   onClose: () => void
   onSubmit: (formData: FormData) => void
 }
 
-export default function RentalForm({ selectedItems = [], onClose, onSubmit }: RentalFormProps) {
+export default function RentalForm({ selectedItem, selectedItems = [], onClose, onSubmit }: RentalFormProps) {
   const [formData, setFormData] = useState<FormData>({
     namaLengkap: "",
     noHandphone: "",
@@ -53,8 +54,9 @@ export default function RentalForm({ selectedItems = [], onClose, onSubmit }: Re
     }
   }
 
-  const items =
-    selectedItems.length > 0
+  const items = selectedItem
+    ? [selectedItem]
+    : selectedItems.length > 0
       ? selectedItems
       : [
           {
@@ -235,11 +237,18 @@ export default function RentalForm({ selectedItems = [], onClose, onSubmit }: Re
                 </label>
               </div>
 
-              {/* Save & Next Button */}
-              <div className="pt-4">
+              <div className="pt-4 flex gap-3">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="flex-1 py-3 bg-gray-600 text-white font-bold rounded-lg hover:bg-gray-700 transition flex items-center justify-center gap-2"
+                >
+                  <span className="text-xl">←</span>
+                  Back
+                </button>
                 <button
                   type="submit"
-                  className="w-full py-3 bg-[#00BCD4] text-white font-bold rounded-lg hover:bg-[#00ACC1] transition flex items-center justify-center gap-2"
+                  className="flex-1 py-3 bg-[#00BCD4] text-white font-bold rounded-lg hover:bg-[#00ACC1] transition flex items-center justify-center gap-2"
                 >
                   Save & Next
                   <span className="text-xl">→</span>
