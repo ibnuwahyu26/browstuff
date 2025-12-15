@@ -59,7 +59,7 @@ export default function HomePage() {
             transition-all duration-300 overflow-hidden"
           >
             <ul className="text-gray-700 text-sm">
-              {["Sound System", "Lighting", "Kamera", "Olahraga", "Lainnya"].map((cat) => (
+              {["Sound System", "Lighting", "Kamera", "ANUAN", "Lainnya"].map((cat) => (
                 <li
                   key={cat}
                   className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
