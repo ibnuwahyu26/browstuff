@@ -220,9 +220,11 @@ export default function LandingPage() {
           dengan menyewakannya.
         </p>
 
-        <button className="px-6 py-3 bg-[#00ADB5] text-white rounded-lg shadow-lg hover:bg-[#058A90] transition-colors font-semibold">
-          DAFTAR
+        <Link href="/register">
+        <button className="px-6 py-3 bg-[#00ADB5] text-white rounded-lg shadow-lg hover:bg-[#058A90] transition-colors font-semibold">DAFTAR
         </button>
+        </Link>
+
       </section>
 
       {/* ================= FOOTER ================= */}
