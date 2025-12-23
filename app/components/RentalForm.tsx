@@ -2,6 +2,8 @@
 
 import type React from "react"
 import { useState } from "react"
+import PaymentForm from "./PaymentForm"
+
 
 interface Item {
   id: number
@@ -28,7 +30,8 @@ interface RentalFormProps {
 }
 
 export default function RentalForm({ selectedItem, selectedItems = [], onClose, onSubmit }: RentalFormProps) {
-  const [formData, setFormData] = useState<FormData>({
+  const [step, setStep] = useState<1 | 2>(1)
+  const [formData, setFormData] = useState<FormData>({ 
     namaLengkap: "",
     noHandphone: "",
     email: "",
@@ -74,34 +77,66 @@ export default function RentalForm({ selectedItem, selectedItems = [], onClose, 
             img: "/walkie-talkie.jpg",
           },
         ]
-
+        
+        if (step === 2){
+          return(
+          <PaymentForm
+          selectedItems={items}
+          onClose={() => setStep (1)}
+          onSubmit={() => onSubmit(formData)}
+          />
+          )
+        }
+        
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-[#2C3E50] rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
-        <div className="relative bg-linear-to-r from-[#3B5998] to-[#2C5F8D] p-6 rounded-t-2xl">
-          <div className="flex items-center gap-3">
-            <div className="bg-white rounded p-1">
+      <div className="bg-[#1e2530] rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
+        
+        {/* --- HEADER BARU (Sesuai Foto) --- */}
+        <div className="relative h-16 flex items-end">
+          {/* Background Biru Paling Belakang */}
+          <div className="absolute inset-0 bg-[#003366] rounded-t-2xl"></div>
+
+          {/* Layer Biru Tengah dengan Lengkungan */}
+          <div 
+            className="absolute inset-0 bg-[#3b5998] w-2/3"
+            style={{ 
+              borderBottomRightRadius: '100px',
+              borderTopRightRadius: '20px',
+              borderTopLeftRadius: '15px'
+            }}
+          ></div>
+
+          {/* Tab Judul "Form Penyewaan" */}
+          <div 
+            className="relative bg-[#343a40] px-8 py-5 flex items-center gap-2 z-10"
+            style={{ 
+              borderTopLeftRadius: '16px',
+              borderTopRightRadius: '40px',
+              borderBottomRightRadius: '40px',
+              boxShadow: '4px 0 10px rgba(0,0,0,0.3)'
+            }}
+          >
+            {/* Icon Checkbox Putih */}
+            <div className="border-[1.5px] border-white rounded-md p-0.5 flex items-center justify-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="14"
+                height="14"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#3B5998"
-                strokeWidth="3"
+                stroke="white"
+                strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
-            <h2 className="text-xl md:text-2xl font-bold text-white">Form Penyewaan</h2>
-          </div>
-          {/* Curved white accent */}
-          <div className="absolute right-0 top-0 w-64 h-full">
-            <div className="absolute right-0 top-0 w-full h-full bg-white rounded-bl-[100px] opacity-20"></div>
+            <h2 className="text-white text-lg font-medium">Form Penyewaan</h2>
           </div>
         </div>
+        {/* --- END HEADER BARU --- */}
 
         <div className="grid md:grid-cols-2 gap-6 p-6">
           {/* Left Column - Info Pesanan */}
@@ -135,7 +170,7 @@ export default function RentalForm({ selectedItem, selectedItems = [], onClose, 
             <form
               onSubmit={(e) => {
                 e.preventDefault()
-                onSubmit(formData)
+                setStep(2)
               }}
               className="space-y-4"
             >

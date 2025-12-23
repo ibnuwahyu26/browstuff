@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation" // ✅ TAMBAHAN
 import RentalForm from "@/app/components/RentalForm"
 
 interface Item {
@@ -12,6 +13,8 @@ interface Item {
 }
 
 export default function HomePage() {
+  const router = useRouter() // ✅ TAMBAHAN
+
   const [selectedItem, setSelectedItem] = useState<Item | null>(null)
   const [showRentalForm, setShowRentalForm] = useState(false)
 
@@ -26,10 +29,10 @@ export default function HomePage() {
     { id: 8, name: "Mic", price: "250.000", status: "tersedia", img: "/items/mic.png" },
   ]
 
+  // ✅ DIUBAH ISINYA SAJA (UI TIDAK DISENTUH)
   const handleRentClick = (item: Item) => {
     if (item.status === "tersedia") {
-      setSelectedItem(item)
-      setShowRentalForm(true)
+      router.push(`/produk/${item.id}`)
     }
   }
 
@@ -39,7 +42,6 @@ export default function HomePage() {
   }
 
   const handleSubmitRental = (formData: any) => {
-    // Handle form submission here
     console.log("Form data:", formData)
     alert(
       `Penyewaan ${selectedItem?.name} berhasil diajukan!\nTotal: Rp. ${(Number.parseInt(selectedItem!.price.replace(/\./g, "")) * formData.jumlahHari).toLocaleString("id-ID")}`,
@@ -76,33 +78,16 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* ACTION BAR (CATEGORY + SEARCH) */}
+      {/* ACTION BAR */}
       <section className="max-w-6xl mx-auto mt-6 px-4 flex flex-col md:flex-row items-center gap-4 md:gap-6">
-        {/* CATEGORY DROPDOWN */}
         <div className="relative group z-50">
           <button className="flex items-center gap-2 bg-[#222831] text-white px-5 py-3 rounded-xl font-semibold shadow hover:bg-[#1b2027] transition">
             <span className="text-xl">☰</span>
             PILIH KATEGORI
             <i className="fa-solid fa-chevron-down text-xs"></i>
           </button>
-
-          <div
-            className="absolute left-0 mt-2 w-44 bg-white shadow-xl rounded-xl
-            opacity-0 invisible group-hover:opacity-100 group-hover:visible
-            transform -translate-y-2 group-hover:translate-y-0
-            transition-all duration-300 overflow-hidden"
-          >
-            <ul className="text-gray-700 text-sm">
-              {["Sound System", "Lighting", "Kamera", "ANUAN", "Lainnya"].map((cat) => (
-                <li key={cat} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  {cat}
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
-        {/* SEARCH BAR */}
         <div className="flex-1">
           <div className="flex items-center bg-white px-4 py-3 shadow rounded-xl">
             <input
@@ -119,27 +104,17 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto pt-14 pb-16 px-2 md:px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
         {items.map((item) => (
           <div key={item.id} className="flex flex-col items-center">
-            {/* PUTIH (ATAS) */}
             <div className="bg-white w-full rounded-3xl p-4 md:p-9 shadow-md flex justify-center z-10">
-              <img src={item.img || "/placeholder.svg"} alt={item.name} className="h-20 md:h-28 object-contain" />
+              <img src={item.img} alt={item.name} className="h-20 md:h-28 object-contain" />
             </div>
 
-            {/* ABU (BAWAH) */}
             <div className="bg-[#3A4750] w-full -mt-8 rounded-3xl p-3 md:p-4 pt-8 md:pt-10 shadow-lg text-white flex flex-col">
               <h3 className="text-xs md:text-sm font-semibold text-center mb-2 md:mb-3">{item.name}</h3>
 
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 md:mb-4 gap-1">
-                <p className="text-xs md:text-sm">
-                  Rp. {item.price}
-                  <span className="text-xs">/Hari</span>
-                </p>
-
-                <span
-                  className={`text-xs px-2 md:px-3 py-0.5 rounded-full self-end sm:self-auto ${
-                    item.status === "tersedia" ? "bg-green-500" : "bg-red-500"
-                  }`}
-                >
-                  {item.status === "tersedia" ? "tersedia" : "tidak tersedia"}
+              <div className="flex justify-between mb-4">
+                <p className="text-xs md:text-sm">Rp. {item.price}/Hari</p>
+                <span className={`text-xs px-3 rounded-full ${item.status === "tersedia" ? "bg-green-500" : "bg-red-500"}`}>
+                  {item.status}
                 </span>
               </div>
 
@@ -147,10 +122,9 @@ export default function HomePage() {
                 onClick={() => handleRentClick(item)}
                 disabled={item.status !== "tersedia"}
                 className={`mt-auto w-full py-1.5 rounded-full border-2 text-xs md:text-sm transition
-                  ${
-                    item.status === "tersedia"
-                      ? "border-white hover:bg-white hover:text-[#3A4750] cursor-pointer"
-                      : "border-gray-400 text-gray-400 cursor-not-allowed"
+                  ${item.status === "tersedia"
+                    ? "border-white hover:bg-white hover:text-[#3A4750]"
+                    : "border-gray-400 text-gray-400 cursor-not-allowed"
                   }`}
               >
                 Sewa
@@ -160,7 +134,6 @@ export default function HomePage() {
         ))}
       </section>
 
-      {/* RENTAL FORM MODAL */}
       {showRentalForm && selectedItem && (
         <RentalForm selectedItems={[selectedItem]} onClose={handleCloseModal} onSubmit={handleSubmitRental} />
       )}
