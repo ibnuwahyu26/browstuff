@@ -1,114 +1,98 @@
-export default function ProfilePage() {
+export default function NewPage() {
   return (
-    <div className="min-h-screen bg-gray-300 flex items-center justify-center p-8">
-      <div className="w-[1200px] bg-white rounded-3xl shadow-2xl overflow-hidden">
-        {/* Header */}
-        <div className="bg-cyan-500 px-8 py-5 flex items-center gap-4">
-          <div className="w-14 h-14 bg-gradient-to-br from-purple-500 via-pink-500 to-cyan-400 rounded-2xl flex items-center justify-center shadow-lg">
-            <span className="text-white text-3xl font-bold">B</span>
+    <div className="min-h-screen w-full bg-gray-600 flex justify-center py-10 overflow-hidden">
+      
+      {/* CARD */}
+      <div className="w-[900px] h-[500px] bg-white rounded-2xl shadow-xl overflow-hidden">
+        
+        {/* HEADER */}
+        <div className="bg-[#00ADB5] h-[64px] px-6 flex items-center gap-3">
+          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 via-pink-500 to-cyan-400 rounded-lg flex items-center justify-center">
+            <span className="text-white text-xl font-bold">B</span>
           </div>
-          <h1 className="text-white text-5xl font-bold tracking-wide">BrowStuff</h1>
+          <h1 className="text-white text-2xl font-bold">BrowStuff</h1>
         </div>
 
-        <div className="flex bg-gray-300">
-          {/* Sidebar */}
-          <div className="w-[450px] bg-gray-300 p-6 relative">
-            {/* Profile Card */}
-            <div className="bg-cyan-500 rounded-[2.5rem] p-8 pb-10 relative shadow-xl">
-              {/* Edit Icon - Positioned outside card */}
-              <button className="absolute -top-3 left-8 w-12 h-12 bg-cyan-500 rounded-2xl flex items-center justify-center hover:bg-cyan-600 transition shadow-lg z-10">
-                <svg className="w-7 h-7 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                </svg>
+        {/* BODY */}
+        <div className="flex h-[calc(100%-64px)] bg-gray-300">
+          
+          {/* SIDEBAR */}
+          <div className="w-[300px] p-4">
+            <div className="bg-[#00ADB5] rounded-3xl p-5 pb-6 shadow-lg relative h-full">
+
+              {/* Edit Button */}
+              <button className="absolute -top-2 left-5 w-8 h-8 bg-black rounded-lg flex items-center justify-center shadow hover:bg-cyan-600 text-sm">
+                ✎
               </button>
 
-              {/* Profile Picture - Overlapping top */}
-              <div className="flex justify-center -mt-16 mb-6">
-                <div className="w-40 h-40 bg-gray-400 rounded-full flex items-center justify-center shadow-2xl border-8 border-cyan-500">
-                  <svg className="w-24 h-24 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              {/* Avatar */}
+              <div className="flex justify-center -mt-7 mb-3">
+                <div className="w-24 h-24 bg-gray-400 rounded-full border-4 border-cyan-500 flex items-center justify-center shadow">
+                  <svg
+                    className="w-12 h-12 text-gray-300"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
                   </svg>
                 </div>
               </div>
 
-              {/* Username */}
-              <p className="text-white text-center text-lg mb-6">@jerichooyee</p>
-              
-              {/* Greeting */}
-              <p className="text-white text-base mb-1 ml-1">Hello,</p>
-              <h2 className="text-white text-4xl font-bold mb-8 ml-1">Jericho Pratama</h2>
+              <p className="text-white text-center text-xs mb-1">
+                @jerichooyee
+              </p>
+              <p className="text-white text-xs">Hello,</p>
+              <h2 className="text-white text-lg font-bold mb-4">
+                Jericho Pratama
+              </h2>
 
-              {/* Menu Items */}
-              <div className="space-y-3">
-                <button className="w-full bg-gray-200 hover:bg-gray-100 text-gray-900 font-bold py-4 px-6 rounded-full text-left transition shadow-md text-lg">
-                  Mulai buka toko
-                </button>
-                <button className="w-full bg-gray-200 hover:bg-gray-100 text-gray-900 font-bold py-4 px-6 rounded-full text-left transition shadow-md text-lg">
-                  Settings
-                </button>
-                <button className="w-full bg-gray-200 hover:bg-gray-100 text-gray-900 font-bold py-4 px-6 rounded-full text-left transition shadow-md text-lg">
-                  Notifikasi
-                </button>
-                <button className="w-full bg-gray-200 hover:bg-gray-100 text-gray-900 font-bold py-4 px-6 rounded-full text-left transition shadow-md text-lg">
-                  Pesanan
-                </button>
-                <button className="w-full bg-gray-200 hover:bg-gray-100 text-gray-900 font-bold py-4 px-6 rounded-full text-left transition shadow-md text-lg">
-                  Review
-                </button>
+              {/* MENU */}
+              <div className="space-y-2 flex flex-col items-end">
+                {[
+                  "Mulai buka toko",
+                  "Settings",
+                  "Notifikasi",
+                  "Pesanan",
+                  "Review",
+                ].map((item) => (
+                  <button
+                    key={item}
+                    className="w-full ml-3.5 bg-gray-200 hover:bg-gray-100 text-black font-semibold py-2 px-3 rounded-l-full rounded-r-none text-left shadow text-xs"
+                  >
+                    {item}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* Main Content */}
-          <div className="flex-1 bg-gray-300 p-10 pt-8">
-            <h2 className="text-6xl font-black text-gray-900 mb-10" style={{letterSpacing: '-0.02em'}}>Profile</h2>
+          {/* MAIN CONTENT */}
+          <div className="flex-1 p-6">
+            <h2 className="text-3xl font-black text-black mb-5">
+              Profile
+            </h2>
 
-            <div className="space-y-6 pr-8">
-              {/* Name Field */}
-              <div>
-                <label className="block text-gray-900 font-bold mb-2 text-lg">Name</label>
-                <input
-                  type="text"
-                  value="Jericho Pratama"
-                  readOnly
-                  className="w-full px-5 py-4 border-[3px] border-gray-900 rounded-2xl bg-white text-gray-900 font-semibold text-lg shadow-md"
-                />
-              </div>
-
-              {/* Username Field */}
-              <div>
-                <label className="block text-gray-900 font-bold mb-2 text-lg">UserName</label>
-                <input
-                  type="text"
-                  value="Jerichooyee"
-                  readOnly
-                  className="w-full px-5 py-4 border-[3px] border-gray-900 rounded-2xl bg-white text-gray-900 font-semibold text-lg shadow-md"
-                />
-              </div>
-
-              {/* Email Field */}
-              <div>
-                <label className="block text-gray-900 font-bold mb-2 text-lg">Email</label>
-                <input
-                  type="email"
-                  value="JerichoPratama@gmail.com"
-                  readOnly
-                  className="w-full px-5 py-4 border-[3px] border-gray-900 rounded-2xl bg-white text-gray-900 font-semibold text-lg shadow-md"
-                />
-              </div>
-
-              {/* Phone Number Field */}
-              <div>
-                <label className="block text-gray-900 font-bold mb-2 text-lg">No Handphone</label>
-                <input
-                  type="tel"
-                  value="08xxxxxxxxxxx"
-                  readOnly
-                  className="w-full px-5 py-4 border-[3px] border-gray-900 rounded-2xl bg-white text-gray-900 font-semibold text-lg shadow-md"
-                />
-              </div>
+            <div className="space-y-4 max-w-[460px] text-black">
+              {[
+                { label: "Name", value: "Jericho Pratama" },
+                { label: "Username", value: "Jerichooyee" },
+                { label: "Email", value: "JerichoPratama@gmail.com" },
+                { label: "No Handphone", value: "08xxxxxxxxxxx" },
+              ].map((field) => (
+                <div key={field.label}>
+                  <label className="block font-semibold mb-1 text-xs">
+                    {field.label}
+                  </label>
+                  <input
+                    readOnly
+                    value={field.value}
+                    className="w-full px-3 py-2 border-2 border-gray-900 rounded-lg font-medium shadow text-xs bg-white"
+                  />
+                </div>
+              ))}
             </div>
           </div>
+
         </div>
       </div>
     </div>
