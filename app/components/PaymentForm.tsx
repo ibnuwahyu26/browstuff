@@ -1,19 +1,11 @@
 "use client"
 
 import React from "react"
-
-interface Item {
-  id: number
-  name: string
-  price: number
-  img: string
-  duration: string
-  startDate: string
-  endDate: string
-}
+import type { Item, FormData } from "../interfaces/type"
 
 interface PaymentFormProps {
   selectedItems?: Item[]
+  userData?: FormData
   onClose?: () => void
   onSubmit?: () => void
 }
@@ -50,29 +42,81 @@ export default function PaymentForm({
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-[#1e2530] rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
-        
-        {/* --- HEADER --- */}
-        <div className="relative h-16 flex items-end">
-          <div className="absolute inset-0 bg-[#003366] rounded-t-2xl"></div>
+       <div className="relative h-16 items-end">
+  <div className="absolute inset-0 bg-[#003366] rounded-t-2xl"></div>
 
-          <div className="absolute inset-0 bg-[#3b5998] " style={{ borderBottomRightRadius: '40px', borderTopRightRadius: '40px', borderTopLeftRadius: '16px' }}>
-            <div className="border-[1.5px] border-white rounded-md p-0.5 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-            </div>
-          </div>
+  {/* LAYER BIRU DI BELAKANG TAB */}
+  <div
+    className="absolute inset-y-0 left-10 w-1/2 bg-[#3b5998]"
+    style={{
+      borderTopLeftRadius: "15px",
+      borderTopRightRadius: "20px",
+      borderBottomRightRadius: "100px",
+    }}
+  ></div>
+
+  {/* WRAPPER TAB */}
+  <div className="relative flex h-full items-center z-10 ">
+
+    {/* TAB FORM PENYEWAAN */}
+    <div
+      className="h-full bg-[#343a40] px-8 flex items-center gap-2"
+      style={{
+        borderTopLeftRadius: "16px",
+        borderTopRightRadius: "40px",
+        borderBottomRightRadius: "40px",
+        boxShadow: "4px 0 10px rgba(0,0,0,0.3)",
+      }}
+    >
+      <div className="border-[1.5px] border-white rounded-md p-0.5 flex items-center justify-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="white"
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      </div>
+      <h2 className="text-white text-lg font-medium">
+        Form Penyewaan
+      </h2>
+    </div>
+
+    {/* TEKS PEMBAYARAN DI ATAS LAYER BIRU */}
+<div className="h-full flex items-center gap-2 px-10">
+  <div className="border-[1.5px] border-white rounded-md p-0.5 flex items-center justify-center opacity-80">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="white"
+      strokeWidth="4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  </div>
+
+  <h2 className="text-white text-lg font-medium opacity-80">
+    Pembayaran
+  </h2>
+</div>
+  </div>
+</div>
 
 
+{/* CONTENT */}
+<div className="grid md:grid-cols-2 gap-6 p-6">
 
-          <div className="relative bg-[#343a40] px-8 py-5 flex items-center gap-2 z-10" style={{ borderTopLeftRadius: '16px', borderTopRightRadius: '40px', borderBottomRightRadius: '40px', boxShadow: '4px 0 10px rgba(0,0,0,0.3)' }}>
-            <div className="border-[1.5px] border-white rounded-md p-0.5 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-            </div>
-            <h2 className="text-white text-lg font-medium">Form Penyewaan</h2>
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6 p-6">
-          
           {/* --- LEFT COLUMN (Info Pesanan) --- */}
           <div className="space-y-4">
             <div className="bg-white rounded-xl p-4 space-y-4">

@@ -3,24 +3,7 @@
 import type React from "react"
 import { useState } from "react"
 import PaymentForm from "./PaymentForm"
-
-
-interface Item {
-  id: number
-  name: string
-  price: string
-  status: string
-  img: string
-}
-
-interface FormData {
-  namaLengkap: string
-  noHandphone: string
-  email: string
-  alamat: string
-  jaminan: string
-  fotoKTP: File | null
-}
+import type { Item, FormData } from "../interfaces/type"
 
 interface RentalFormProps {
   selectedItem?: Item
@@ -88,7 +71,7 @@ export default function RentalForm({ selectedItem, selectedItems = [], onClose, 
           )
         }
         
-  return (
+  return (  
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-[#1e2530] rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
         
@@ -99,7 +82,7 @@ export default function RentalForm({ selectedItem, selectedItems = [], onClose, 
 
           {/* Layer Biru Tengah dengan Lengkungan */}
           <div 
-            className="absolute inset-0 bg-[#3b5998] w-2/3"
+            className="absolute inset-0 bg-[#3b5998] w-1/2"
             style={{ 
               borderBottomRightRadius: '100px',
               borderTopRightRadius: '20px',
