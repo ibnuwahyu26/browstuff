@@ -33,7 +33,7 @@ export default function LandingPage() {
 
             {/* CATEGORY DROPDOWN */}
             <div className="relative group z-50">
-              <button className="flex items-center gap-2 bg-[#222831] text-white px-5 py-3 rounded-lg font-semibold">
+              <button className="flex items-center gap-2 bg-[#222831] text-white px-5 py-3 rounded-lg font-poppins">
                 <span className="text-xl">☰</span>
                 PILIH KATEGORI
                 <span className="text-sm">▼</span>
@@ -135,7 +135,7 @@ export default function LandingPage() {
       <section className="max-w-6xl mx-auto py-12 md:py-16 px-4 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
         {/* TEXT */}
         <div>
-          <h2 className="text-2xl font-bold mb-4 text-black">
+          <h2 className="text-2xl font-poppins mb-4 text-black">
             Kenapa Memilih BrowStuff
           </h2>
           <p className="text-gray-600 mb-4">

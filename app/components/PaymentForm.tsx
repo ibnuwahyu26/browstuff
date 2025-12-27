@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import type { Item, FormData } from "../interfaces/type"
 
 interface PaymentFormProps {
@@ -15,6 +15,8 @@ export default function PaymentForm({
   onClose,
   onSubmit,
 }: PaymentFormProps) {
+  const [showAllMethods, setShowAllMethods] = useState(false)
+  const toggleMethods = () => setShowAllMethods(prev => !prev)
 
   const items: Item[] = selectedItems.length > 0 ? selectedItems : [
     {
@@ -37,87 +39,47 @@ export default function PaymentForm({
     },
   ]
 
-  const subtotal = items.reduce((sum, item) => sum + (item.price * 2), 0) // Contoh perhitungan subtotal
+  const subtotal = items.reduce((sum, item) => sum + (item.price * 2), 0)
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-[#1e2530] rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
-       <div className="relative h-16 items-end">
-  <div className="absolute inset-0 bg-[#003366] rounded-t-2xl"></div>
 
-  {/* LAYER BIRU DI BELAKANG TAB */}
-  <div
-    className="absolute inset-y-0 left-10 w-1/2 bg-[#3b5998]"
-    style={{
-      borderTopLeftRadius: "15px",
-      borderTopRightRadius: "20px",
-      borderBottomRightRadius: "100px",
-    }}
-  ></div>
+        {/* HEADER TAB */}
+        <div className="relative h-16 flex items-end">
+          <div className="absolute inset-0 bg-[#003366] rounded-t-2xl"></div>
+          <div className="absolute inset-y-0 left-10 w-1/2 bg-[#3b5998]"
+            style={{ borderTopLeftRadius: "15px", borderTopRightRadius: "20px", borderBottomRightRadius: "100px" }}
+          ></div>
 
-  {/* WRAPPER TAB */}
-  <div className="relative flex h-full items-center z-10 ">
+          <div className="relative flex h-full items-center z-10">
+            {/* Form Penyewaan Tab */}
+            <div className="h-full bg-[#343a40] px-8 flex items-center gap-2"
+              style={{ borderTopLeftRadius: "16px", borderTopRightRadius: "40px", borderBottomRightRadius: "40px", boxShadow: "4px 0 10px rgba(0,0,0,0.3)" }}>
+              <div className="border-[1.5px] border-white rounded-md p-0.5 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <h2 className="text-white text-lg font-medium">Form Penyewaan</h2>
+            </div>
 
-    {/* TAB FORM PENYEWAAN */}
-    <div
-      className="h-full bg-[#343a40] px-8 flex items-center gap-2"
-      style={{
-        borderTopLeftRadius: "16px",
-        borderTopRightRadius: "40px",
-        borderBottomRightRadius: "40px",
-        boxShadow: "4px 0 10px rgba(0,0,0,0.3)",
-      }}
-    >
-      <div className="border-[1.5px] border-white rounded-md p-0.5 flex items-center justify-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="white"
-          strokeWidth="4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <polyline points="20 6 9 17 4 12" />
-        </svg>
-      </div>
-      <h2 className="text-white text-lg font-medium">
-        Form Penyewaan
-      </h2>
-    </div>
+            {/* Pembayaran Tab */}
+            <div className="h-full flex items-center gap-2 px-10">
+              <div className="border-[1.5px] border-white rounded-md p-0.5 flex items-center justify-center opacity-80">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <h2 className="text-white text-lg font-medium opacity-80">Pembayaran</h2>
+            </div>
+          </div>
+        </div>
 
-    {/* TEKS PEMBAYARAN DI ATAS LAYER BIRU */}
-<div className="h-full flex items-center gap-2 px-10">
-  <div className="border-[1.5px] border-white rounded-md p-0.5 flex items-center justify-center opacity-80">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="white"
-      strokeWidth="4"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <polyline points="20 6 9 17 4 12" />
-    </svg>
-  </div>
+        {/* CONTENT */}
+        <div className="grid md:grid-cols-2 gap-6 p-6">
 
-  <h2 className="text-white text-lg font-medium opacity-80">
-    Pembayaran
-  </h2>
-</div>
-  </div>
-</div>
-
-
-{/* CONTENT */}
-<div className="grid md:grid-cols-2 gap-6 p-6">
-
-          {/* --- LEFT COLUMN (Info Pesanan) --- */}
+          {/* LEFT COLUMN - Info Pesanan */}
           <div className="space-y-4">
             <div className="bg-white rounded-xl p-4 space-y-4">
               {items.map((item) => (
@@ -139,7 +101,7 @@ export default function PaymentForm({
               ))}
             </div>
 
-            {/* Total Section (Blue Background sesuai foto) */}
+            {/* Total Section */}
             <div className="bg-[#94b3e3] rounded-xl p-4 text-black font-semibold">
               <div className="flex justify-between border-b border-[#3b5998] pb-1">
                 <span>Subtotal</span>
@@ -156,44 +118,65 @@ export default function PaymentForm({
             </div>
           </div>
 
-          {/* --- RIGHT COLUMN (Form sesuai foto) --- */}
+          {/* RIGHT COLUMN - Form */}
           <div className="bg-[#3a3f45] rounded-xl p-6 space-y-4 shadow-inner">
             
             {/* Nama Lengkap */}
             <div>
               <label className="block text-[#00BCD4] font-bold text-sm mb-1">Nama Lengkap</label>
-              <input 
-                type="text" 
-                defaultValue="Jericho Wahyu"
-                className="w-full px-4 py-2 bg-transparent border-2 border-white rounded-xl text-[#00BCD4] focus:outline-none"
-              />
+              <input type="text" defaultValue="Jericho Wahyu"
+                className="w-full px-4 py-2 bg-transparent border-2 border-white rounded-xl text-[#00BCD4] focus:outline-none" />
             </div>
 
-            {/* Metode Pembayaran (Sesuai Box di Foto) */}
+            {/* Metode Pembayaran */}
             <div className="border-2 border-white rounded-xl overflow-hidden">
               <div className="bg-transparent p-2">
                 <label className="block text-[#00BCD4] font-bold text-sm mb-2 px-1">Metode Pembayaran</label>
                 <div className="space-y-0">
-                  <label className="flex items-center justify-between p-2 bg-[#94b3e3] text-black border-b border-black">
+
+                  {/* Pilihan utama */}
+                  <label className="flex items-center justify-between p-2 bg-[#94b3e3] text-black border-b border-black rounded">
                     <div className="flex items-center gap-2">
                       <div className="bg-green-500 text-white text-[10px] px-2 py-0.5 rounded font-bold">COD</div>
                       <span className="text-sm font-medium">Cash On Delivery</span>
                     </div>
                     <input type="radio" name="pay" className="w-4 h-4" />
                   </label>
-                  <label className="flex items-center justify-between p-2 bg-[#94b3e3] text-black border-b border-black">
+                  <label className="flex items-center justify-between p-2 bg-[#94b3e3] text-black border-b border-black rounded">
                     <div className="flex items-center gap-2">
-                      <div className="bg-blue-400 text-white text-[10px] px-2 py-0.5 rounded font-bold">gopay</div>
+                      <div className="bg-blue-400 text-white text-[10px] px-2 py-0.5 rounded font-bold">Gopay</div>
                       <span className="text-sm font-medium">Gopay</span>
                     </div>
                     <input type="radio" name="pay" className="w-4 h-4" defaultChecked />
                   </label>
-                  <div className="bg-[#e0e0e0] p-2 flex justify-between items-center text-[10px] text-gray-600">
-                    <div className="flex gap-2 grayscale">
-                      <span>BCA</span><span>Mandiri</span><span>DANA</span>
-                    </div>
-                    <button className="text-[#00BCD4] font-bold italic">Lihat Metode Lain &gt;</button>
+
+                  {/* Lihat metode lain */}
+                  <div
+                    className="bg-[#e0e0e0] p-0 mt-1 cursor-pointer"
+                    onClick={toggleMethods}
+                  >
+                    {showAllMethods && (
+                      <div className="flex flex-col">
+                        {["BCA","Mandiri","QRIS","Dana","Bank Lainnya"].map((method) => (
+                          <label key={method} className="flex items-center justify-between p-2 bg-[#94b3e3] text-black border-b border-black rounded">
+                            <span>{method}</span>
+                            <input type="radio" name="pay" className="w-4 h-4" />
+                          </label>
+                        ))}
+                      </div>
+                    )}
+                    {!showAllMethods && (
+                      <div className="flex items-center justify-between p-2 bg-[#e0e0e0] text-gray-600">
+                        <div className="flex gap-2 grayscale">
+                          <span>BCA</span><span>Mandiri</span><span>DANA</span>
+                        </div>
+                        <button className="text-[#00BCD4] font-bold italic">
+                          Lihat Metode Lain &gt;
+                        </button>
+                      </div>
+                    )}
                   </div>
+
                 </div>
               </div>
             </div>
@@ -203,25 +186,19 @@ export default function PaymentForm({
               <label className="block text-[#00BCD4] font-bold text-sm mb-1">No Handphone</label>
               <div className="flex items-center gap-2">
                 <span className="text-[#00BCD4] font-bold text-lg">+62</span>
-                <input 
-                  type="text" 
-                  defaultValue="85697562453"
-                  className="flex-1 px-4 py-2 bg-transparent border-2 border-white rounded-xl text-[#00BCD4] focus:outline-none"
-                />
+                <input type="text" defaultValue="85697562453"
+                  className="flex-1 px-4 py-2 bg-transparent border-2 border-white rounded-xl text-[#00BCD4] focus:outline-none" />
               </div>
             </div>
 
             {/* Alamat */}
             <div>
               <label className="block text-[#00BCD4] font-bold text-sm mb-1">Alamat</label>
-              <input 
-                type="text" 
-                defaultValue="Univ. Paramadina (Ruangan HIMTI)"
-                className="w-full px-4 py-2 bg-transparent border-2 border-white rounded-xl text-[#00BCD4] focus:outline-none"
-              />
+              <input type="text" defaultValue="Univ. Paramadina (Ruangan HIMTI)"
+                className="w-full px-4 py-2 bg-transparent border-2 border-white rounded-xl text-[#00BCD4] focus:outline-none" />
             </div>
 
-            {/* Tombol Submit Tengah */}
+            {/* Tombol Submit */}
             <div className="pt-2">
               <button
                 onClick={onSubmit}

@@ -14,9 +14,12 @@ interface Item {
 
 export default function HomePage() {
   const router = useRouter() // ✅ TAMBAHAN
+  
 
   const [selectedItem, setSelectedItem] = useState<Item | null>(null)
   const [showRentalForm, setShowRentalForm] = useState(false)
+
+   const [showCategory, setShowCategory] = useState(false)
 
   const items = [
     { id: 1, name: "Camera SONY", price: "250.000", status: "tersedia", img: "/items/camera.png" },
@@ -55,50 +58,78 @@ export default function HomePage() {
       <header className="bg-[#00ADB5] px-4 md:px-8 py-4 flex items-center justify-between">
         <h1 className="text-white text-2xl md:text-3xl font-extrabold">BrowStuff</h1>
 
-        <div className="bg-[#3A4750] text-white px-2 md:px-4 lg:px-8 py-3 rounded-xl flex flex-wrap gap-2 md:gap-4 lg:gap-10 text-xs justify-center md:justify-end">
+        <div className="bg-[#3A4750] text-white font-poppins px-2 md:px-4 lg:px-8 py-3 rounded-xl flex flex-wrap gap-2 md:gap-4 lg:gap-10 text-xs justify-center md:justify-end">
           <div className="flex flex-col items-center gap-1 cursor-pointer hover:text-[#00ADB5] transition min-w-0">
             <i className="fa-solid fa-bell text-sm md:text-lg"></i>
             <span className="text-xs">Notifikasi</span>
           </div>
 
-          <div className="flex flex-col items-center gap-1 cursor-pointer hover:text-[#00ADB5] transition min-w-0">
+          <div className="flex flex-col items-center gap-1 cursor-pointer font-poppins hover:text-[#00ADB5] transition min-w-0">
             <i className="fa-solid fa-store text-sm md:text-lg"></i>
             <span className="text-xs">Buka Toko</span>
           </div>
 
-          <div className="flex flex-col items-center gap-1 cursor-pointer hover:text-[#00ADB5] transition min-w-0">
+          <div className="flex flex-col items-center gap-1 cursor-pointer font-poppins hover:text-[#00ADB5] transition min-w-0">
             <i className="fa-solid fa-bag-shopping text-sm md:text-lg"></i>
             <span className="text-xs">Orders</span>
           </div>
 
-          <div className="flex flex-col items-center gap-1 cursor-pointer hover:text-[#00ADB5] transition min-w-0">
+          <div className="flex flex-col items-center gap-1 cursor-pointer font-poppins hover:text-[#00ADB5] transition min-w-0">
             <i className="fa-solid fa-user text-sm md:text-lg"></i>
             <span className="text-xs">Akun</span>
           </div>
         </div>
       </header>
 
-      {/* ACTION BAR */}
-      <section className="max-w-6xl mx-auto mt-6 px-4 flex flex-col md:flex-row items-center gap-4 md:gap-6">
-        <div className="relative group z-50">
-          <button className="flex items-center gap-2 bg-[#222831] text-white px-5 py-3 rounded-xl font-semibold shadow hover:bg-[#1b2027] transition">
-            <span className="text-xl">☰</span>
-            PILIH KATEGORI
-            <i className="fa-solid fa-chevron-down text-xs"></i>
-          </button>
-        </div>
 
-        <div className="flex-1">
-          <div className="flex items-center bg-white px-4 py-3 shadow rounded-xl">
-            <input
-              type="text"
-              placeholder="Mau sewa apa hari ini?"
-              className="w-full focus:outline-none text-gray-800"
-            />
-            <i className="fa-solid fa-magnifying-glass text-gray-500 ml-2"></i>
-          </div>
-        </div>
-      </section>
+      {/* ACTION BAR */}
+<section className="max-w-6xl mx-auto mt-6 px-4 flex flex-col md:flex-row items-center gap-4 md:gap-6">
+  {/* CATEGORY DROPDOWN */}
+  <div className="relative z-50">
+    <button
+      onClick={() => setShowCategory(prev => !prev)}
+      className="flex items-center gap-2 bg-[#222831] text-white px-5 py-3 rounded-xl font-semibold shadow hover:bg-[#1b2027] transition"
+    >
+      <span className="text-xl">☰</span>
+      PILIH KATEGORI
+      <span className="text-sm">{showCategory ? "▲" : "▼"}</span>
+    </button>
+
+    {/* Dropdown List */}
+    {showCategory && (
+      <div className="absolute left-0 mt-2 w-40 bg-white shadow-lg rounded-lg overflow-hidden">
+        <ul className="text-gray-700">
+          {["Sound System","Lightning","Kamera","Olahraga","Lainnya"].map(cat => (
+            <li
+              key={cat}
+              className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              onClick={() => {
+                console.log("Selected:", cat)
+                setShowCategory(false)
+              }}
+            >
+              {cat}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+
+  {/* SEARCH BAR */}
+  <div className="flex-1">
+    <div className="flex items-center bg-white px-4 py-3 shadow rounded-xl">
+      <input
+        type="text"
+        placeholder="Mau sewa apa hari ini?"
+        className="w-full focus:outline-none text-gray-800"
+      />
+      <i className="fa-solid fa-magnifying-glass text-gray-500 ml-2"></i>
+    </div>
+  </div>
+</section>
+
+
 
       {/* GRID PRODUK */}
       <section className="max-w-6xl mx-auto pt-14 pb-16 px-2 md:px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
