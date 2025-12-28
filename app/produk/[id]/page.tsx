@@ -8,10 +8,17 @@ import RentalForm from "@/app/components/RentalForm"
 
 export default function ProductDetailPage() {
   const params = useParams()
-  const product = products.find((p) => p.id === params.id)
+  const id = params.id as string
+  const product = products.find((p) => p.id === id)
 
   // STATE untuk gambar utama
-  const [mainImage, setMainImage] = useState(product?.mainImage || "")
+ const [mainImage, setMainImage] = useState<string | null>(null)
+
+if (!product) {
+  return <div className="p-10">Produk tidak ditemukan</div>
+}
+
+const image = mainImage ?? product.mainImage
 
   // ===============================
   // Step 2: State modal rental form
@@ -46,7 +53,7 @@ export default function ProductDetailPage() {
         <div className="col-span-4 flex flex-col justify-center">
           <div className="border rounded-xl p-4 flex justify-center">
             <Image
-              src={mainImage}
+              src={mainImage ?? product.mainImage}
               alt={product.name}
               width={260}
               height={420}

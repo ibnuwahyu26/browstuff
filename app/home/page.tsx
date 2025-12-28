@@ -1,16 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation" // ✅ TAMBAHAN
+import { useRouter } from "next/navigation" 
 import RentalForm from "@/app/components/RentalForm"
+import type { Item } from "@/app/interfaces/type"
 
-interface Item {
-  id: number
-  name: string
-  price: string
-  status: string
-  img: string
-}
 
 export default function HomePage() {
   const router = useRouter() // ✅ TAMBAHAN
@@ -22,17 +16,16 @@ export default function HomePage() {
    const [showCategory, setShowCategory] = useState(false)
 
   const items = [
-    { id: 1, name: "Camera SONY", price: "250.000", status: "tersedia", img: "/items/camera.png" },
-    { id: 2, name: "Handy Talkie", price: "50.000", status: "tersedia", img: "/items/ht.png" },
-    { id: 3, name: "Audio Mixer", price: "250.000", status: "tidak", img: "/items/mixer.png" },
-    { id: 4, name: "Lampu Sorot", price: "250.000", status: "tersedia", img: "/items/lampu.png" },
-    { id: 5, name: "Layar Proyektor", price: "250.000", status: "tersedia", img: "/items/proyektor.png" },
-    { id: 6, name: "Lampu Taktis", price: "250.000", status: "tersedia", img: "/items/moving.png" },
-    { id: 7, name: "Tenda", price: "250.000", status: "tersedia", img: "/items/tenda.png" },
-    { id: 8, name: "Mic", price: "250.000", status: "tersedia", img: "/items/mic.png" },
+    { id: 1, name: "Camera SONY", price: 250.000, status: "tersedia", img: "/items/camera.png" },
+    { id: 2, name: "Handy Talkie", price: 50.000, status: "tersedia", img: "/items/ht.png" },
+    { id: 3, name: "Audio Mixer", price: 250.000, status: "tidak", img: "/items/mixer.png" },
+    { id: 4, name: "Lampu Sorot", price: 250.000, status: "tersedia", img: "/items/lampu.png" },
+    { id: 5, name: "Layar Proyektor", price: 250.000, status: "tersedia", img: "/items/proyektor.png" },
+    { id: 6, name: "Lampu Taktis", price: 250.000, status: "tersedia", img: "/items/moving.png" },
+    { id: 7, name: "Tenda", price: 250.000, status: "tersedia", img: "/items/tenda.png" },
+    { id: 8, name: "Mic", price: 250.000, status: "tersedia", img: "/items/mic.png" },
   ]
 
-  // ✅ DIUBAH ISINYA SAJA (UI TIDAK DISENTUH)
   const handleRentClick = (item: Item) => {
     if (item.status === "tersedia") {
       router.push(`/produk/${item.id}`)
@@ -45,12 +38,18 @@ export default function HomePage() {
   }
 
   const handleSubmitRental = (formData: any) => {
-    console.log("Form data:", formData)
-    alert(
-      `Penyewaan ${selectedItem?.name} berhasil diajukan!\nTotal: Rp. ${(Number.parseInt(selectedItem!.price.replace(/\./g, "")) * formData.jumlahHari).toLocaleString("id-ID")}`,
-    )
-    handleCloseModal()
-  }
+  console.log("Form data:", formData)
+
+  const total =
+    selectedItem!.price * formData.jumlahHari
+
+  alert(
+    `Penyewaan ${selectedItem?.name} berhasil diajukan!\n` +
+    `Total: Rp. ${total.toLocaleString("id-ID")}`
+  )
+
+  handleCloseModal()
+}
 
   return (
     <main className="min-h-screen bg-[#E5E5E5] font-sans">
@@ -166,7 +165,10 @@ export default function HomePage() {
       </section>
 
       {showRentalForm && selectedItem && (
-        <RentalForm selectedItems={[selectedItem]} onClose={handleCloseModal} onSubmit={handleSubmitRental} />
+        <RentalForm
+        selectedItem={selectedItem}
+       onClose={handleCloseModal}
+       onSubmit={handleSubmitRental}/>   
       )}
     </main>
   )

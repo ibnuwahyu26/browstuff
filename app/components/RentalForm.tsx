@@ -6,19 +6,18 @@ import PaymentForm from "./PaymentForm"
 import type { Item, FormData } from "../interfaces/type"
 
 interface RentalFormProps {
-  selectedItem?: Item
-  selectedItems?: Item[]
+  selectedItem : Item
   onClose: () => void
   onSubmit: (formData: FormData) => void
 }
 
 export default function RentalForm({
   selectedItem,
-  selectedItems = [],
   onClose,
   onSubmit,
 }: RentalFormProps) {
   const [step, setStep] = useState<1 | 2>(1)
+
   const [formData, setFormData] = useState<FormData>({
     namaLengkap: "",
     noHandphone: "",
@@ -47,28 +46,9 @@ export default function RentalForm({
       }))
     }
   }
+  
+  const items: Item[] = [selectedItem]
 
-  // 1️⃣ Tentukan items dulu
-  const items: Item[] = selectedItem
-    ? [selectedItem]
-    : selectedItems.length > 0
-    ? selectedItems
-    : [
-        {
-          id: 1,
-          name: "Camera SONY",
-          price: 200000,
-          status: "available",
-          img: "/sony-camera.jpg",
-        },
-        {
-          id: 2,
-          name: "Handy Talky (HT)",
-          price: 200000,
-          status: "available",
-          img: "/walkie-talkie.jpg",
-        },
-      ]
 
   // 2️⃣ State untuk jumlah hari tiap item
   const [itemsWithDays, setItemsWithDays] = useState(
