@@ -19,8 +19,8 @@ export default function LaporanPage() {
       </div>
 
       {/* FILTER */}
-      <div className="flex items-center gap-4">
-        <div className="flex items-center bg-gray-200 rounded-full px-4 py-2 w-80">
+      <div className="flex items-center gap-4 text-black font-poppins">
+        <div className="border-2 border-black flex items-center bg-[#D9D9D9] rounded-full px-4 py-2 w-90">
           <input
             placeholder="Search"
             className="bg-transparent outline-none flex-1"
@@ -28,24 +28,24 @@ export default function LaporanPage() {
           🔍
         </div>
 
-        <select className="px-4 py-2 bg-gray-200 rounded">
+        <select className="px-4 py-2 bg-[#D9D9D9] rounded">
           <option>Jenis Laporan</option>
         </select>
 
-        <select className="px-4 py-2 bg-gray-200 rounded">
+        <select className="px-4 py-2 bg-[#D9D9D9]  rounded">
           <option>Status</option>
         </select>
       </div>
 
       {/* SUMMARY */}
-      <div className="grid grid-cols-3 bg-gray-300 rounded-xl overflow-hidden text-center font-semibold">
+      <div className="grid grid-cols-3 bg-[#D9D9D9] text-black rounded-xl overflow-hidden text-center font-semibold">
         <div className="py-3">Total Laporan: 13</div>
         <div className="py-3 border-x">Belum Diproses: 5</div>
         <div className="py-3">Selesai: 8</div>
       </div>
 
       {/* TABLE */}
-      <div className="bg-white rounded-xl overflow-hidden">
+      <div className="bg-white rounded-xl overflow-hidden text-black">
         <table className="w-full text-sm">
           <thead className="border-b font-semibold">
             <tr>
