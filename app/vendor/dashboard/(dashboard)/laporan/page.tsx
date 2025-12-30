@@ -1,3 +1,5 @@
+import { Store, Search} from "lucide-react"
+
 export default function LaporanPage() {
   return (
     <div className="space-y-6">
@@ -11,21 +13,19 @@ export default function LaporanPage() {
               HIMTI PARAMADINA RENT
             </h2>
           </div>
-
           <div className="w-14 h-14 bg-gray-300 rounded-full flex items-center justify-center">
-            <span className="text-2xl">🏪</span>
-          </div>
+            <Store size={28} className="text-black" />
+          </div> 
         </div>
       </div>
 
       {/* FILTER */}
       <div className="flex items-center gap-4 text-black font-poppins">
-        <div className="border-2 border-black flex items-center bg-[#D9D9D9] rounded-full px-4 py-2 w-90">
-          <input
-            placeholder="Search"
-            className="bg-transparent outline-none flex-1"
-          />
-          🔍
+        <div className="border-2 border-black flex items-center bg-[#D9D9D9] rounded-full px-4 py-2 w-90 gap-2">
+         <input
+         placeholder="Search"
+         className="bg-transparent outline-none flex-1 text-sm"/>
+         <Search size={18} className="text-black opacity-70" />
         </div>
 
         <select className="px-4 py-2 bg-[#D9D9D9] rounded">

@@ -1,3 +1,5 @@
+import {Store} from "lucide-react"
+
 export default function DashboardPage() {
   const chartData = [
     { label: "Sen", value: 60 },
@@ -21,11 +23,10 @@ export default function DashboardPage() {
             </h2>
           </div>
 
-          <div className="w-14 h-14 bg-gray-300 rounded-full flex items-center justify-center">
-            <span className="text-2xl">🏪</span>
-          </div>
+         <div className="w-14 h-14 bg-gray-300 rounded-full flex items-center justify-center">
+          <Store size={28} className="text-black" /></div>
         </div>
-      </div>
+        </div>
 
       {/* ================= MAIN CONTENT ================= */}
       <div className="space-y-8">

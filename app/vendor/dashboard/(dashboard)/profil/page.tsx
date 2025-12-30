@@ -1,5 +1,7 @@
 "use client"
 
+import { Store, } from "lucide-react"
+
 export default function ProfileTokoPage() {
   return (
     <div className="space-y-8">
@@ -13,9 +15,8 @@ export default function ProfileTokoPage() {
               HIMTI PARAMADINA RENT
             </h2>
           </div>
-
-          <div className="w-14 h-14 bg-gray-300 rounded-full flex items-center justify-center">
-            <span className="text-2xl">🏪</span>
+            <div className="w-14 h-14 bg-gray-300 rounded-full flex items-center justify-center">
+            <Store size={28} className="text-black" />
           </div>
         </div>
       </div>
@@ -24,7 +25,7 @@ export default function ProfileTokoPage() {
       <div className="bg-[#00ADB5] px-8 pb-10 rounded-2xl text-black">
         <h1 className="text-3xl font-semibold my-7 text-white">Profile Toko</h1>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
           {/* ===== INFORMASI TOKO ===== */}
           <div className="col-span-2 bg-white rounded-xl p-6 border-4 border-black">

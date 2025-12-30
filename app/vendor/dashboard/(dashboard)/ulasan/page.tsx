@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { Store, } from "lucide-react"
 
 export default function UlasanPage() {
   const [activeTab, setActiveTab] = useState("all")
@@ -20,7 +21,7 @@ export default function UlasanPage() {
           </div>
 
           <div className="w-14 h-14 bg-gray-300 rounded-full flex items-center justify-center">
-            <span className="text-2xl">🏪</span>
+            <Store size={28} className="text-black" />
           </div>
         </div>
       </div>

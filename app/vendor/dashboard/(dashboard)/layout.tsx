@@ -8,9 +8,9 @@ export default function DashboardLayout({
 }) {
   const menu = [
     { label: "Dashboard", href: "/vendor/dashboard" },
-    { label: "Kelola Barang", href: "/vendor/dashboard/barang" },
+    { label: "Kelola Barang", href: "/vendor/dashboard/kelolabarang" },
     { label: "Pemasukan", href: "/vendor/dashboard/pemasukan" },
-    { label: "Info Pesanan", href: "/vendor/dashboard/pesanan" },
+    { label: "Info Pesanan", href: "/vendor/dashboard/infopesanan" },
     { label: "Laporan", href: "/vendor/dashboard/laporan" },
     { label: "Ulasan", href: "/vendor/dashboard/ulasan" },
     { label: "Profil", href: "/vendor/dashboard/profil" }
